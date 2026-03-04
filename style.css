@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+:root {
+    --bg-light: #f0f4f8;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --text-main: #2d3436;
+    --glow-blue: #0984e3;
+    --glow-pink: #e84393;
+    --glow-green: #00b894;
+    --glow-red: #d63031;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    /* Animated Bright Pastel Background */
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 50%, #e0c3fc 100%);
+    background-size: 300% 300%;
+    animation: lightBG 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+@keyframes lightBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(110px, auto) repeat(6, 65px);
+    gap: 12px;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 25px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-main);
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+}
+
+/* Flashing Light Hover Effect (Default Blue) */
+.calculator-grid > button:hover {
+    background: var(--glow-blue);
+    color: white;
+    box-shadow: 0 0 15px var(--glow-blue), 0 0 30px var(--glow-blue);
+    transform: scale(1.08);
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.calculator-grid > button:active {
+    transform: scale(0.9);
+}
+
+.span-two { grid-column: span 2; }
+.span-four { grid-column: span 4; font-size: 1.8rem; letter-spacing: 3px; }
+
+/* Operators (Flashing Pink) */
+.operator {
+    color: var(--glow-pink);
+    background: rgba(255, 255, 255, 0.95);
+}
+.operator:hover {
+    background: var(--glow-pink) !important;
+    color: white !important;
+    box-shadow: 0 0 15px var(--glow-pink), 0 0 30px var(--glow-pink) !important;
+}
+
+/* Clear & Delete (Flashing Red) */
+.highlight {
+    color: var(--glow-red);
+}
+.highlight:hover {
+    background: var(--glow-red) !important;
+    color: white !important;
+    box-shadow: 0 0 15px var(--glow-red), 0 0 30px var(--glow-red) !important;
+}
+
+/* Equals Button (Flashing Green) */
+.equals {
+    background: var(--glow-green) !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
+}
+.equals:hover {
+    background: #00e6b8 !important; /* Brighter green on hover */
+    box-shadow: 0 0 20px var(--glow-green), 0 0 40px var(--glow-green) !important;
+}
+
+/* Advanced Buttons */
+.adv-btn { 
+    font-size: 1.1rem !important; 
+    color: var(--glow-blue);
+}
+
+/* Display Screen (Light Glossy Look) */
+.output {
+    grid-column: 1 / -1;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 15px;
+    border: 2px solid white;
+    margin-bottom: 10px;
+    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.05), 
+                0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.output .previous-operand {
+    color: #636e72;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.output .current-operand {
+    color: var(--text-main);
+    font-size: 2.8rem;
+    font-weight: 800;
+    /* Slight text glow for numbers */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
